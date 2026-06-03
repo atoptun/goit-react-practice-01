@@ -1,11 +1,34 @@
-// import { FaRegThumbsUp } from 'react-icons/fa';
-// import { MdPeople, MdOutlineProductionQuantityLimits } from 'react-icons/md';
-// import { GiTreeDoor } from 'react-icons/gi';
-// import  StatisticsItem  from '../StatisticsItem/StatisticsItem';
-// import style from './Statistics.module.css';
+import { FaRegThumbsUp } from 'react-icons/fa';
+import { MdPeople, MdOutlineProductionQuantityLimits } from 'react-icons/md';
+import { GiTreeDoor } from 'react-icons/gi';
+import StatisticsItem from '../StatisticsItem/StatisticsItem';
+import style from './Statistics.module.css';
 
-const Statistics = () => {
-  return <h2>Statistics</h2>;
+const Statistics = ({ title, stats }) => {
+  const icons = [
+    FaRegThumbsUp,
+    MdPeople,
+    MdOutlineProductionQuantityLimits,
+    GiTreeDoor,
+  ];
+
+  return (
+    <>
+      {title && <h3 className={style.title}>{title}</h3>}
+      <ul className={style.list}>
+        {stats.map((stat, index) => 
+          <li key={stat.id} className={style.item}>
+            <StatisticsItem
+              icon={icons[index]}
+              iconSize={24}
+              title={stat.title}
+              total={stat.total}
+            />
+          </li>
+        )}
+      </ul>
+    </>
+  );
 };
 
 export default Statistics;
